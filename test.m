@@ -12,6 +12,7 @@ C = colormaps.linspecer(3);
 
 for ii = 3:-1:1
   subplot(1, 3, ii);
+  axis square
 end
 
 % perform the dimensionality reduction and clustering
@@ -26,4 +27,4 @@ for ii = 1:length(alg)
   title(ax(ii), alg{ii})
 end
 
-figlib.pretty('PlotBuffer', 0.2);
+figlib.pretty('PlotBuffer', 0.1);
