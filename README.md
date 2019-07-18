@@ -1,2 +1,2 @@
 # cell-sorter
-Classification using UMAP and svm
+Classification using UMAP and k-means
