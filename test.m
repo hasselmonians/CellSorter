@@ -11,7 +11,7 @@ figure;
 C = colormaps.linspecer(3);
 
 for ii = 3:-1:1
-  subplot(1, 3, ii);
+  ax(ii) = subplot(1, 3, ii); hold on;
   axis square
 end
 
@@ -20,10 +20,11 @@ end
 alg = {'UMAP', 'FIt-SNE', 'PCA'};
 
 for ii = 1:length(alg)
-  labels = kcluster(dimred(meas, 'Algorithm', alg{ii}), 2);
-  plot(ax(ii), Y(idx == 1, 1), Y(idx == 1, 2), 'o', 'Color', C(1, :))
-  plot(ax(ii), Y(idx == 2, 1), Y(idx == 2, 2), 'o', 'Color', C(2, :))
-  plot(ax(ii), Y(idx == 3, 1), Y(idx == 3, 2), 'o', 'Color', C(3, :))
+  Y = dimred(meas, 'Algorithm', alg{ii});
+  labels = kcluster(Y, 3);
+  plot(ax(ii), Y(labels == 1, 1), Y(labels == 1, 2), 'o', 'Color', C(1, :))
+  plot(ax(ii), Y(labels == 2, 1), Y(labels == 2, 2), 'o', 'Color', C(2, :))
+  plot(ax(ii), Y(labels == 3, 1), Y(labels == 3, 2), 'o', 'Color', C(3, :))
   title(ax(ii), alg{ii})
 end
 
