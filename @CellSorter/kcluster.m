@@ -2,18 +2,12 @@
 
 % Arguments:
 %   Y: the data as an N x 2 matrix
-%   k: the number of clusters to make
 % Outputs:
 %
 
-function labels = kcluster(Y, k)
-
-  sset = statset;
-  sset.Display = 'iter';
-  sset.MaxIter = 100;
-  sset.UseParallel = true;
+function labels = kcluster(self, Y)
 
   % perform k-means clustering into three classes
-  labels = kmeans(Y, k, 'Distance', 'sqeuclidean', 'Start', 'plus', 'Replicates', 3, 'EmptyAction', 'error', 'Options', sset);
+  labels = kmeans(Y, self.nClusters, 'Distance', 'sqeuclidean', 'Start', 'plus', 'Replicates', 3, 'EmptyAction', 'error', 'Options', sset);
 
 end % function
