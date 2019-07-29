@@ -11,6 +11,7 @@ function Y = dimred(X, varargin)
 
   % default options
   options.Algorithm = 'umap';
+  options.verbosity = true;
 
   % does user just want to know what options are available?
   if nargout && ~nargin
@@ -19,20 +20,23 @@ function Y = dimred(X, varargin)
   end
 
   % parse options
-  corelib.parseNameValueArguments(options, varargin{:});
+  options = corelib.parseNameValueArguments(options, varargin{:});
 
   % behavior is determined by which algorithm is chosen
   switch lower(options.Algorithm)
 
   case 'umap'
+    corelib.verb(options.verbosity, 'INFO', ['using ' 'UMAP' ' algorithm'])
     u = umap;
     Y = u.fit(X);
 
-  case 'FIt-SNE'
+  case 'fit-sne'
+    corelib.verb(options.verbosity, 'INFO', ['using ' 'FIt-SNE' ' algorithm'])
     Y = fast_tsne(X);
 
   case 'pca'
-    Y = pca(X);
+    corelib.verb(options.verbosity, 'INFO', ['using ' 'PCA' ' algorithm'])
+    Y = pca(X');
 
   otherwise
     error('unknown algorithm')
