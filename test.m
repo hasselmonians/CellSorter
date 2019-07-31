@@ -6,6 +6,9 @@
 load fisheriris
 % meas and species
 
+% instantiate the object
+cs = CellSorter;
+
 % generate a figure
 figure;
 C = colormaps.linspecer(3);
@@ -20,8 +23,9 @@ end
 alg = {'UMAP', 'FIt-SNE', 'PCA'};
 
 for ii = 1:length(alg)
-  Y = dimred(meas, 'Algorithm', alg{ii});
-  labels = kcluster(Y, 3);
+  cs.algorithm = alg{ii};
+  Y = cs.dimred(meas);
+  labels = cs.kcluster(Y);
   plot(ax(ii), Y(labels == 1, 1), Y(labels == 1, 2), 'o', 'Color', C(1, :))
   plot(ax(ii), Y(labels == 2, 1), Y(labels == 2, 2), 'o', 'Color', C(2, :))
   plot(ax(ii), Y(labels == 3, 1), Y(labels == 3, 2), 'o', 'Color', C(3, :))
