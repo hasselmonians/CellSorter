@@ -2,7 +2,7 @@
 % collects the mean spike waveforms from a root object
 % for a specified filename/filecode
 
-function batchFunction(index, batchname, location, outfile, test)
+function batchFunction(index, location, batchname, outfile, test)
 
   if ~test
     addpath(genpath('/projectnb/hasselmogrp/hoyland/RatCatcher'))
