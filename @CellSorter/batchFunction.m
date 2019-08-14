@@ -13,7 +13,7 @@ function batchFunction(index, location, batchname, outfile, test)
 
   % acquire the filename and filecode
   % the filecode should be the "cell number" as a 1x2 vector
-  [filename, filecode] = RatCatcher.read(location, batchname, index);
+  [filename, filecode] = RatCatcher.read(index, location, batchname);
 
   % load the data
   % expect a 1x1 Session object named "root"
