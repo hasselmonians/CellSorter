@@ -7,6 +7,8 @@ r.protocol = 'CellSorter';
 r.project = 'hasselmogrp';
 r.verbose = true;
 
+return
+
 % batch files
 r = r.batchify;
 
@@ -17,6 +19,7 @@ return
 % NOTE: once the cluster finishes, run the following commands
 
 % gather files
+r.batchname = 'Holger-CellSorter';
 dataTable = r.gather;
 dataTable = r.stitch(dataTable);
 
