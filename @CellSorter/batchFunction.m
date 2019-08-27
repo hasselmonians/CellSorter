@@ -21,7 +21,11 @@ function batchFunction(index, location, batchname, outfile, test)
 
   % acquire the waveform, which should be a 50x4 matrix in millivolts
   % the first index is over time steps, the second over channels in the tetrode
-  waveform = [root.user_def.waveform(filecode(1), :).mean];
+  try
+    waveform = [root.user_def.waveform(filecode(1), :).mean];
+  catch
+    waveform = NaN(50, 4);
+  end
 
   % save these data as a .csv file
   csvwrite(outfile, waveform);
