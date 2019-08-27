@@ -8,6 +8,6 @@
 function labels = kcluster(self, Y)
 
   % perform k-means clustering into three classes
-  labels = kmeans(Y, self.nClusters, 'Distance', 'sqeuclidean', 'Start', 'plus', 'Replicates', 3, 'EmptyAction', 'error', 'Options', sset);
+  labels = kmeans(Y, self.nClusters, 'Distance', 'sqeuclidean', 'Start', 'plus', 'Replicates', 3, 'EmptyAction', 'error', 'Options', self.sset);
 
 end % function
