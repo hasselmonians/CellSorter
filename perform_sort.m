@@ -7,9 +7,10 @@ load('Holger-CellSorter.mat')
 dataTable  = dataTable(~failing, :);
 
 % stack the waveforms and impute the data matrix
-X = zeros(height(dataTable), numel(dataTable.waveforms{1}));
+% X = zeros(height(dataTable), numel(dataTable.waveforms{1}));
 for ii = 1:height(dataTable)
-  X(ii, :) = corelib.vectorise(dataTable.waveforms{ii});
+  % X(ii, :) = corelib.vectorise(dataTable.waveforms{ii});
+  X(ii, :) = dataTable.waveforms{ii}(:, findStrongestChannel(dataTable.waveforms{ii}));
 end
 
 % instantiate the CellSorter object
@@ -17,4 +18,7 @@ cs = CellSorter;
 cs.algorithm = 'tsne';
 
 Y = cs.dimred(X);
-labels = cs.kcluster(Y);
+% labels = cs.kcluster(Y);
+
+
+figure; scatter(Y(:, 1), Y(:, 2))
