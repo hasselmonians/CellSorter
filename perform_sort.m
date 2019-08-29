@@ -49,10 +49,14 @@ else
   % add the labels to the data table
   dataTable.labels = labels;
 
-% visualize the results
+  % save the results by overwriting the existing .mat file
+  save('Holger-CellSorter-processed.mat', 'dataTable', 'r', 'Y')
+end
+
+% plot the reduced data, colored by cluster
 figure; hold on
-scatter(Y(labels == 1, 1), Y(labels == 1, 2))
-scatter(Y(labels == 2, 1), Y(labels == 2, 2))
+scatter(Y(dataTable.labels == 1, 1), Y(dataTable.labels == 1, 2))
+scatter(Y(dataTable.labels == 2, 1), Y(dataTable.labels == 2, 2))
 title('Holger-CellSorter UMAP dim-red / k-means clustering')
 xlabel('dimension 1 (a.u.)')
 ylabel('dimension 2 (a.u.)')
