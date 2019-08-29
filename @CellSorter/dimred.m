@@ -26,7 +26,7 @@ function Y = dimred(self, X)
 
   case 'tsne'
     corelib.verb(self.verbosity, 'INFO', ['using ' 't-SNE' 'algorithm'])
-    Y = tsne(X');
+    Y = tsne(X);
 
   otherwise
     error('unknown algorithm')
