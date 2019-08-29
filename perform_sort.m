@@ -25,6 +25,10 @@ else
     channels(ii) = findStrongestChannel(dataTable.waveforms{ii});
     X(ii, :) = dataTable.waveforms{ii}(:, channels(ii));
   end
+
+  % rescale within each time-series, to within the box [-1, 1]
+  for ii = 1:size(X, 1)
+    X(ii, :) = rescale(X(ii, :), -1, 1);
   end
 
   %% Perform the cell sorting procedure
