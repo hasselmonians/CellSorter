@@ -29,6 +29,9 @@ labels = cs.kcluster(Y);
 figure; hold on
 scatter(Y(labels == 1, 1), Y(labels == 1, 2))
 scatter(Y(labels == 2, 1), Y(labels == 2, 2))
+title('Holger-CellSorter UMAP dim-red / k-means clustering')
+xlabel('dimension 1 (a.u.)')
+ylabel('dimension 2 (a.u.)')
 figlib.pretty()
 
 % add the labels to the data table
