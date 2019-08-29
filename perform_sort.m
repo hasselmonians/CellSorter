@@ -21,8 +21,18 @@ end
 cs = CellSorter;
 cs.algorithm = 'umap';
 
+% perform dimensionality reduction and clustering
 Y = cs.dimred(X);
-% labels = cs.kcluster(Y);
+labels = cs.kcluster(Y);
 
+% visualize the results
+figure; hold on
+scatter(Y(labels == 1, 1), Y(labels == 1, 2))
+scatter(Y(labels == 2, 1), Y(labels == 2, 2))
+figlib.pretty()
 
-figure; scatter(Y(:, 1), Y(:, 2))
+% add the labels to the data table
+dataTable.labels = labels;
+
+% save the results by overwriting the existing .mat file
+save('Holger-CellSorter.mat', 'dataTable', 'r', 'failing')
