@@ -81,5 +81,3 @@ figlib.pretty('LineWidth', 1, 'PlotBuffer', 0.1);
 
 
 return
-% save the results by overwriting the existing .mat file
-save('Holger-CellSorter.mat', 'dataTable', 'r', 'failing')
