@@ -2,9 +2,9 @@ classdef CellSorter
 
 properties
 
-sset      % contains a statset structure
-nClusters % how many clusters do you want?
-nDims = 2 % how many dimensions do you want?
+sset          % contains a statset structure
+nClusters = 2 % how many clusters do you want?
+nDims = 2     % how many dimensions do you want?
 verbosity = true;
 algorithm = 'umap';
 
