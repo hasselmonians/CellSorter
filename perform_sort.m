@@ -17,6 +17,16 @@ else
   end
   dataTable  = dataTable(~failing, :);
 
+  % stack the waveforms and impute the data matrix
+  % use the waveform with the highest spike height out of each channel
+  channels = zeros(height(dataTable), 1);
+  for ii = height(dataTable):-1:1
+    % X(ii, :) = corelib.vectorise(dataTable.waveforms{ii});
+    channels(ii) = findStrongestChannel(dataTable.waveforms{ii});
+    X(ii, :) = dataTable.waveforms{ii}(:, channels(ii));
+  end
+  end
+
   %% Perform the cell sorting procedure
 
   % instantiate the CellSorter object
