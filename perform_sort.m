@@ -19,7 +19,7 @@ end
 
 % instantiate the CellSorter object
 cs = CellSorter;
-cs.algorithm = 'tsne';
+cs.algorithm = 'umap';
 
 Y = cs.dimred(X);
 % labels = cs.kcluster(Y);
