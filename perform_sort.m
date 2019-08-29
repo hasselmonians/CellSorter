@@ -3,42 +3,37 @@
 
 %% Pre-processing
 
-% load the data from a local .mat file
-load('Holger-CellSorter.mat')
+if exist('Holger-CellSorter-processed.mat', 'file')
+  load('Holger-CellSorter-processed.mat')
+else
 
-% pre-process the data by removing failed data
-failing = false(height(dataTable), 1);
-for ii = 1:height(dataTable)
-  failing(ii) = any(any(isnan(dataTable.waveforms{ii})));
-end
-dataTable  = dataTable(~failing, :);
+  % load the data from a local .mat file
+  load('Holger-CellSorter.mat')
 
-% stack the waveforms and impute the data matrix
-% X = zeros(height(dataTable), numel(dataTable.waveforms{1}));
-channels = zeros(height(dataTable), 1);
-for ii = 1:height(dataTable)
-  % X(ii, :) = corelib.vectorise(dataTable.waveforms{ii});
-  channels(ii) = findStrongestChannel(dataTable.waveforms{ii});
-  X(ii, :) = dataTable.waveforms{ii}(:, channels(ii));
-end
+  % pre-process the data by removing failed data
+  failing = false(height(dataTable), 1);
+  for ii = 1:height(dataTable)
+    failing(ii) = any(any(isnan(dataTable.waveforms{ii})));
+  end
+  dataTable  = dataTable(~failing, :);
 
-%% Perform the cell sorting procedure
+  %% Perform the cell sorting procedure
 
-% instantiate the CellSorter object
-cs = CellSorter;
-cs.algorithm = 'umap';
+  % instantiate the CellSorter object
+  cs = CellSorter;
+  cs.algorithm = 'umap';
 
-%% Update the data table and visualize results
+  %% Update the data table and visualize results
 
-% perform dimensionality reduction and clustering
-Y = cs.dimred(X);
-labels = cs.kcluster(Y);
+  % perform dimensionality reduction and clustering
+  Y = cs.dimred(X);
+  labels = cs.kcluster(Y);
 
-% add the strongest channel to the data table
-dataTable.channels = channels;
+  % add the strongest channel to the data table
+  dataTable.channels = channels;
 
-% add the labels to the data table
-dataTable.labels = labels;
+  % add the labels to the data table
+  dataTable.labels = labels;
 
 % visualize the results
 figure; hold on
