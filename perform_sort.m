@@ -4,6 +4,10 @@
 load('Holger-CellSorter.mat')
 
 % pre-process the data by removing failed data
+failing = false(height(dataTable), 1);
+for ii = 1:height(dataTable)
+  failing(ii) = any(any(isnan(dataTable.waveforms{ii})));
+end
 dataTable  = dataTable(~failing, :);
 
 % stack the waveforms and impute the data matrix
