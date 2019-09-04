@@ -28,7 +28,7 @@ else
 
   % add the filenames and filecodes
   dataTable = r.stitch(dataTable);
-  
+
   % rescale within each time-series, to within the box [-1, 1]
   for ii = 1:size(X, 1)
     X(ii, :) = rescale(X(ii, :), -1, 1);
