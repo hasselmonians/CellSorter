@@ -36,12 +36,12 @@ function batchFunction(index, location, batchname, outfile, test)
 
   % compute the spike width
   [peak, peak_index] = max(waveform(:, channel));
-  [minimum, min_index] = min(waveform(:, channel));
+  [minimum, min_index] = min(waveform(peak_index:end, channel));
   spike_width = min_index - peak_index;
   spike_width = spike_width./ root.fs_video; %convert time to msec
 
   % compute the firing rate
-  firing_rate = length(CMBHOME.Utils.ContinuizeEpochs(root.cel_ts)) / (root.ts(end) - root.ts(1)) * root.fs_video;
+  firing_rate = length(CMBHOME.Utils.ContinuizeEpochs(root.cel_ts)) / (root.ts(end) - root.ts(1));
 
   % create a combined output matrix
   % the first 50x4 block comprises the waveforms
