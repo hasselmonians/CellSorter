@@ -19,7 +19,7 @@ return
 % NOTE: once the cluster finishes, run the following commands
 
 % gather files
-r.validate;
+r = r.validate;
 dataTable = r.gather;
 save('Holger-CellSorter.mat', 'dataTable', 'r')
 % dataTable = r.stitch(dataTable);
