@@ -16,6 +16,10 @@ else
     failing(ii) = any(any(isnan(dataTable.waveforms{ii})));
   end
   dataTable  = dataTable(~failing, :);
+  % add the filenames and filecodes
+  r.filenames = r.filenames(~failing);
+  r.filecodes = r.filecodes(~failing);
+  dataTable  = r.stitch(dataTable);
 
   % stack the waveforms and impute the data matrix
   % use the waveform with the highest spike height out of each channel
@@ -30,6 +34,9 @@ else
   for ii = 1:size(X, 1)
     X(ii, :) = rescale(X(ii, :), -1, 1);
   end
+
+  % add the firing rate as a feature
+  X = [X dataTable.firing_rate];
 
   %% Perform the cell sorting procedure
 
