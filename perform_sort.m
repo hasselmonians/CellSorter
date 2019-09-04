@@ -18,7 +18,7 @@ else
   dataTable  = dataTable(~failing, :);
   % add the filenames and filecodes
   r.filenames = r.filenames(~failing);
-  r.filecodes = r.filecodes(~failing);
+  r.filecodes = r.filecodes(~failing, :);
   dataTable  = r.stitch(dataTable);
 
   % stack the waveforms and impute the data matrix

@@ -22,7 +22,7 @@ else
   dataTable  = dataTable(~failing, :);
   % add the filenames and filecodes
   r.filenames = r.filenames(~failing);
-  r.filecodes = r.filecodes(~failing);
+  r.filecodes = r.filecodes(~failing, :);
   dataTable  = r.stitch(dataTable);
 
   % stack the waveforms and impute the data matrix
@@ -41,7 +41,7 @@ else
   %% Update the data table and visualize results
 
   % perform dimensionality reduction and clustering
-  Y = [dataTable.spike_width, dataTable.firing_rate];
+  Y = [dataTable.spike_width];%, dataTable.firing_rate];
   labels = cs.kcluster(Y);
 
   % add the strongest channel to the data table
