@@ -35,10 +35,11 @@ function batchFunction(index, location, batchname, outfile, test)
   channel = findStrongestChannel(waveform);
 
   % compute the spike width
-  [peak, peak_index] = max(waveform(:, channel));
-  [minimum, min_index] = min(waveform(peak_index:end, channel));
-  spike_width = min_index - peak_index;
-  spike_width = spike_width./ root.fs_video; %convert time to msec
+  % spike width is defined as difference
+  % between the first maximum in the signal and the following minimum
+  [~, peak_index] = max(waveform(:, channel));
+  [~, spike_width] = min(waveform(peak_index:end, channel));
+  spike_width = spike_width; % units of time-steps
 
   % compute the firing rate
   firing_rate = length(CMBHOME.Utils.ContinuizeEpochs(root.cel_ts)) / (root.ts(end) - root.ts(1));
@@ -50,6 +51,7 @@ function batchFunction(index, location, batchname, outfile, test)
   output = [waveform NaN(size(waveform, 1), 1)];
   output(1, end) = spike_width;
   output(2, end) = firing_rate;
+  output(3, end) = channel;
 
   % save these data as a .csv file
   csvwrite(outfile, output);
