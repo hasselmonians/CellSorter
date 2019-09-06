@@ -3,12 +3,12 @@
 
 %% Pre-processing
 
-if exist('Holger-CellSorter-processed.mat', 'file')
-  load('Holger-CellSorter-processed.mat')
+if exist('data/Holger-CellSorter-processed.mat', 'file')
+  load('data/Holger-CellSorter-processed.mat')
 else
 
   % load the data from a local .mat file
-  load('Holger-CellSorter.mat')
+  load('data/Holger-CellSorter.mat')
 
   % pre-process the data by removing failed data
   failing = false(height(dataTable), 1);
@@ -57,7 +57,7 @@ else
   dataTable.labels = labels;
 
   % save the results by overwriting the existing .mat file
-  save('Holger-CellSorter-processed.mat', 'dataTable', 'r', 'Y')
+  save('data/Holger-CellSorter-processed.mat', 'dataTable', 'r', 'Y')
 end
 
 % plot the reduced data, colored by cluster
