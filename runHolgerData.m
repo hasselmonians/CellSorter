@@ -21,5 +21,5 @@ return
 % gather files
 r = r.validate;
 dataTable = r.gather;
-save('Holger-CellSorter.mat', 'dataTable', 'r')
+save('data/Holger-CellSorter.mat', 'dataTable', 'r')
 % dataTable = r.stitch(dataTable);
