@@ -20,14 +20,19 @@ function batchFunction(index, location, batchname, outfile, test)
   load(filename);
   root.cel = filecode;
 
+  % initialize outputs
+  waveform = NaN(50, 4);
+
   % acquire the waveform, which should be a 50x4 matrix in millivolts
   % the first index is over time steps, the second over channels in the tetrode
   try
     waveform = [root.user_def.waveform(filecode(1), :).mean];
   catch
-    waveform = NaN(50, 4);
+    % acquiring the waveform has failed
+    % save NaNs instead
+    output = [waveform NaN(size(waveform, 1), 1)];
     % save these data as a .csv file
-    csvwrite(outfile, [spike_width firing_rate]);
+    csvwrite(outfile, output);
     return
   end
 
