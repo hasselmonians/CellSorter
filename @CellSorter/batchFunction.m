@@ -5,10 +5,10 @@
 function batchFunction(index, location, batchname, outfile, test)
 
   if ~test
-    addpath(genpath('/projectnb/hasselmogrp/hoyland/RatCatcher'))
-    addpath(genpath('/projectnb/hasselmogrp/hoyland/srinivas.gs_mtools'))
-    addpath(genpath('/projectnb/hasselmogrp/hoyland/CMBHOME'))
-    addpath(genpath('/projectnb/hasselmogrp/hoyland/CellSorter'))
+    addpath(genpath('/projectnb/hasselmogrp/ahoyland/RatCatcher'))
+    addpath(genpath('/projectnb/hasselmogrp/ahoyland/srinivas.gs_mtools'))
+    addpath(genpath('/projectnb/hasselmogrp/ahoyland/CMBHOME'))
+    addpath(genpath('/projectnb/hasselmogrp/ahoyland/CellSorter'))
   end
 
   % acquire the filename and filecode
