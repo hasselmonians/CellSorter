@@ -1,8 +1,8 @@
 r = RatCatcher;
 
 r.expID = 'Holger';
-r.remotepath = '/projectnb/hasselmogrp/hoyland/CellSorter/cluster/';
-r.localpath = '/mnt/hasselmogrp/hoyland/CellSorter/cluster/';
+r.remotepath = '/projectnb/hasselmogrp/ahoyland/CellSorter/cluster/';
+r.localpath = '/mnt/hasselmogrp/ahoyland/CellSorter/cluster/';
 r.protocol = 'CellSorter';
 r.project = 'hasselmogrp';
 r.verbose = true;
