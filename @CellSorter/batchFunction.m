@@ -26,7 +26,8 @@ function batchFunction(index, location, batchname, outfile, test)
   % acquire the waveform, which should be a 50x4 matrix in millivolts
   % the first index is over time steps, the second over channels in the tetrode
   try
-    waveform = [root.user_def.waveform(filecode(1), :).mean];
+    indx_cel = ismember(root.cells,root.cel,'rows'); %identify index of root.cel (filecode) in root.cells vector
+    waveform = [root.user_def.waveform(indx_cel,:).mean];
   catch
     % acquiring the waveform has failed
     % save NaNs instead
