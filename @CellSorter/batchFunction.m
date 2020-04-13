@@ -27,7 +27,7 @@ function batchFunction(index, location, batchname, outfile, test)
   % the first index is over time steps, the second over channels in the tetrode
   try
     indx_cel = ismember(root.cells,root.cel,'rows'); %identify index of root.cel (filecode) in root.cells vector
-    waveform = [root.user_def.waveform(indx_cel,:).mean];
+    waveform = [root.user_def.waveform(indx_cel,1).mean;root.user_def.waveform(indx_cel,2).mean;root.user_def.waveform(indx_cel,3).mean;root.user_def.waveform(indx_cel,4).mean];
   catch
     % acquiring the waveform has failed
     % save NaNs instead
